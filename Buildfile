@@ -29,8 +29,8 @@ define "apacheds-webapp" do
   project.group = "org.intalio.tempo"
   compile.options.target = "1.5"
   
-  libs = [APACHE_DS, APACHE_COMMONS[:lang], APACHE_COMMONS[:collections], JSON_NAGGIT]
-  compile.with(libs, SERVLET_API, SLF4J)
+  libs = [APACHE_DS, APACHE_COMMONS[:lang], APACHE_COMMONS[:collections], JSON_NAGGIT, SLF4J]
+  compile.with(libs, SERVLET_API)
   test.with(libs, LOG4J)
   package(:war).with :libs => libs
 end
