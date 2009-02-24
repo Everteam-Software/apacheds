@@ -1,0 +1,59 @@
+dn: dc=samples,dc=com
+objectClass: extensibleObject
+objectClass: domain
+objectClass: top
+dc: samples
+
+dn: ou=People,dc=samples,dc=com
+objectClass: organizationalUnit
+objectClass: top
+description: People
+ou: People
+
+dn: cn=msmith,ou=People,dc=samples,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: msmith
+givenname: Michael Smith
+l: Foster City
+mail: msmith@intalio.org
+ou: People
+sn: Manager 1
+userpassword:: cGFzc3dvcmQ=
+
+dn: ou=Roles,dc=samples,dc=com
+objectClass: organizationalUnit
+objectClass: top
+description: Roles
+ou: Roles
+
+dn: cn=employee,ou=Roles,dc=samples,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: employee
+ou: Roles
+uniquemember: cn=msmith,ou=People,dc=samples,dc=com
+uniquemember: cn=admin,ou=People,dc=intalio,dc=com
+
+dn: cn=manager,ou=Roles,dc=samples,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: manager
+ou: Roles
+uniquemember: cn=ewilliams,ou=People,dc=samples,dc=com
+
+dn: cn=ewilliams,ou=People,dc=samples,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: ewilliams
+givenname: Emily Williams
+l: Foster City
+mail: ewilliams@intalio.org
+ou: People
+sn: Manager 1
+userpassword:: cGFzc3dvcmQ=
+
