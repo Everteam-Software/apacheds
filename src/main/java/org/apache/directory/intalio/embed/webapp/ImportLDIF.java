@@ -9,10 +9,12 @@ import java.util.Iterator;
 
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.directory.shared.ldap.entry.Entry;
+import org.apache.directory.shared.ldap.exception.LdapNameAlreadyBoundException;
 import org.apache.directory.shared.ldap.ldif.LdifEntry;
 import org.apache.directory.shared.ldap.ldif.LdifReader;
 import org.apache.directory.shared.ldap.name.LdapDN;
@@ -29,10 +31,10 @@ public class ImportLDIF implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent event) {
 		try {
-			Hashtable<Object, Object> createEnv = EnvHelper.createEnv(event
-					.getServletContext());
+			ServletContext servletContext = event.getServletContext();
+			Hashtable<Object, Object> createEnv = EnvHelper.createEnv(servletContext);
 
-			File f = new File(event.getServletContext().getResource("/WEB-INF/classes/ldif/").getFile());
+			File f = new File(this.getClass().getResource(StartStopListener.PARTITIONS_JSON).getFile()).getParentFile();
 			File[] ldifs = f.listFiles(new FilenameFilter() {
 				public boolean accept(File dir, String name) {
 					return name.endsWith(".ldif") ? true : false;
@@ -48,14 +50,19 @@ public class ImportLDIF implements ServletContextListener {
 					Entry en = entry.getEntry();
 					LdapDN dn = new LdapDN(entry.getDn());
 					LdapContext rootDSE = new InitialLdapContext(createEnv,null);
-					rootDSE.createSubcontext(dn, AttributeUtils.toAttributes(en));
+					try {
+						rootDSE.createSubcontext(dn, AttributeUtils.toAttributes(en));	
+					} catch (LdapNameAlreadyBoundException lna) {
+						logger.debug("Entry exist:"+lna.getMessage());
+					}
+
 				}
 				in.close();
 				boolean renamed = toimport.renameTo(new File(toimport.getAbsolutePath()+ ".imported"));
 				logger.info("Processed and renamed:"+renamed);
 			}
 		} catch (Exception e) {
-			logger.debug(e.getMessage(), e);
+			logger.error(e.getMessage(), e);
 		}
 
 	}

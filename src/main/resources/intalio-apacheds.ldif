@@ -1,4 +1,4 @@
-dn: dc=intalio,dc=Org
+dn: dc=intalio,dc=com
 objectClass: extensibleObject
 objectClass: domain
 objectClass: top

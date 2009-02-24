@@ -20,9 +20,6 @@
 package org.apache.directory.intalio.embed.webapp;
 
 import java.io.File;
-import java.io.FileReader;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -30,17 +27,8 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.directory.server.core.DefaultDirectoryService;
 import org.apache.directory.server.core.DirectoryService;
-import org.apache.directory.server.core.entry.ServerEntry;
-import org.apache.directory.server.core.partition.Partition;
-import org.apache.directory.server.core.partition.impl.btree.jdbm.JdbmIndex;
-import org.apache.directory.server.core.partition.impl.btree.jdbm.JdbmPartition;
 import org.apache.directory.server.ldap.LdapService;
 import org.apache.directory.server.protocol.shared.SocketAcceptor;
-import org.apache.directory.server.xdbm.Index;
-import org.apache.directory.shared.ldap.exception.LdapNameNotFoundException;
-import org.apache.directory.shared.ldap.name.LdapDN;
-import org.apache.noggit.JSONParser;
-import org.apache.noggit.ObjectBuilder;
 
 /**
  * A Servlet context listener to start and stop ApacheDS.
@@ -50,7 +38,7 @@ import org.apache.noggit.ObjectBuilder;
  */
 public class StartStopListener implements ServletContextListener {
 
-	private static final String PARTITIONS_JSON = "/partitions.json";
+	public static final String PARTITIONS_JSON = "/partitions.json";
 
 	private DirectoryService directoryService;
 
