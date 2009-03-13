@@ -10,9 +10,9 @@
 			}
 		},
 		"samples": {
-			"dn":"dc=samples,dc=com",
+			"dn":"dc=examples,dc=com",
 			"attributes": {
-				"dc":"samples",
+				"dc":"examples",
 				"objectClass":["top","domain","extensibleObject"
 				]
 			}

@@ -4,29 +4,23 @@ objectClass: domain
 objectClass: top
 dc: intalio
 
-dn: dc=intalio,dc=com
-objectClass: extensibleObject
-objectClass: domain
-objectClass: top
-dc: intalio
-
-dn: ou=People, dc=intalio, dc=com
+dn: ou=People,dc=intalio,dc=com
 objectClass: organizationalUnit
 objectClass: top
 description: People
 ou: People
 
-dn: cn=admin, ou=People, dc=intalio, dc=com
+dn: cn=admin,ou=People,dc=intalio,dc=com
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: top
 cn: admin
-givenname: ADMIN
+givenName: ADMIN
 mail: admin@intalio.org
 ou: People
 sn: Administrator
-userpassword:: Y2hhbmdlaXQ=
+userPassword:: Y2hhbmdlaXQ=
 
 dn: ou=Roles,dc=intalio,dc=com
 objectClass: organizationalUnit
@@ -34,17 +28,17 @@ objectClass: top
 description: Roles
 ou: Roles
 
-dn: cn=ProcessManager, ou=Roles, dc=intalio, dc=com
+dn: cn=ProcessManager,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
 objectClass: top
 cn: ProcessManager
 ou: Roles
-uniquemember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 
-dn: cn=ProcessAdministrator, ou=Roles, dc=intalio, dc=com
+dn: cn=ProcessAdministrator,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
 objectClass: top
 cn: ProcessAdministrator
 ou: Roles
-uniquemember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 
