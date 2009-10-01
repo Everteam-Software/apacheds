@@ -1,0 +1,84 @@
+dn: ou=People,dc=examples,dc=com
+objectClass: organizationalUnit
+objectClass: top
+description: People
+ou: People
+
+dn: cn=msmith,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: msmith
+departmentnumber: 101
+displayname: Mark Smith
+givenname: Mark
+l: Foster City
+mail: msmith@intalio.org
+manager: cn=ewilliams,ou=People,dc=examples,dc=com
+ou: People
+roomNumber: 2248-B12
+sn: Smith
+telephonenumber: (650) 123-4567
+title: Clerk 2
+uid: examples\msmith
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=ewilliams,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: ewilliams
+departmentNumber: 101
+displayName: Emily Williams
+givenname: Emily
+l: Foster City
+mail: ewilliams@intalio.org
+manager: cn=bsmith,ou=People,dc=examples,dc=com
+ou: People
+roomNumber: 6548
+sn: Williams
+telephoneNumber: (650) 123-5432
+title: Manager of Clerks
+uid: examples\ewilliams
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=jlee,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: jlee
+departmentnumber: 2
+displayname: Jane Lee
+givenname: Jane
+l: Foster City
+mail: jlee@intalio.org
+manager: cn=ewilliams,ou=People,dc=examples,dc=com
+ou: People
+sn: Lee
+title: Clerk 1
+uid: examples\jlee
+userpassword:: cGFzc3dvcmQ=
+
+dn: cn=bjones,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: bjones
+departmentnumber: 102
+displayname: Bob Jones
+givenname: Robert
+l: Foster City
+mail: bjones@intalio.org
+manager: cn=bjones,ou=People,dc=examples,dc=com
+ou: People
+roomnumber: 6733
+sn: Jones
+telephonenumber: (650) 555-9987
+title: Director of Customer Service
+uid: examples\bjones
+userpassword:: cGFzc3dvcmQ=
+
