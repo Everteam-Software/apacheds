@@ -29,6 +29,8 @@ import org.apache.directory.server.core.DefaultDirectoryService;
 import org.apache.directory.server.core.DirectoryService;
 import org.apache.directory.server.ldap.LdapService;
 import org.apache.directory.server.protocol.shared.SocketAcceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A Servlet context listener to start and stop ApacheDS.
@@ -39,22 +41,34 @@ import org.apache.directory.server.protocol.shared.SocketAcceptor;
 public class StartStopListener implements ServletContextListener {
 
 	public static final String PARTITIONS_JSON = "/partitions.json";
-
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	private DirectoryService directoryService;
 
 	private SocketAcceptor socketAcceptor;
 	private LdapService ldapService;
 
+	static {
+		System.out.println("static initialiser called");
+	}
+
 	/**
 	 * Startup ApacheDS embedded.
 	 */
 	public void contextInitialized(ServletContextEvent evt) {
-
+		logger.info("### Starting ApacheDS ###");
 		try {
-
 			directoryService = new DefaultDirectoryService();
 			directoryService.setShutdownHookEnabled(true);
 			directoryService.getChangeLog().setEnabled(false);
+			// Added by Veresh
+			String _allowAnonymousAccess = evt.getServletContext()
+					.getInitParameter("ldap.allowanonymousaccess");
+			boolean allowAnonymousAccess = Boolean
+					.parseBoolean(_allowAnonymousAccess);
+			
+			directoryService.setAllowAnonymousAccess(allowAnonymousAccess);
+			
 			directoryService.startup();
 
 			socketAcceptor = new SocketAcceptor(null);
@@ -77,10 +91,13 @@ public class StartStopListener implements ServletContextListener {
 			File workingDir = (File) servletContext
 					.getAttribute("javax.servlet.context.tempdir");
 			directoryService.setWorkingDirectory(workingDir);
-
+			
+			logger.debug("Apache DS starting with : " + directoryService);
+			
 			directoryService.startup();
 			ldapService.start();
-
+			logger.debug("Is Apache DS started ? " + directoryService.isStarted());
+			
 			// Store directoryService in context to provide it to servlets etc.
 			servletContext.setAttribute(DirectoryService.JNDI_KEY,
 					directoryService);
