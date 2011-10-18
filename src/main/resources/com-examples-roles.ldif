@@ -10,7 +10,6 @@ objectClass: top
 cn: employee
 ou: Roles
 uniqueMember: cn=msmith,ou=People,dc=examples,dc=com
-uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 uniqueMember: cn=jlee,ou=People,dc=examples,dc=com
 uniqueMember: cn=ewilliams,ou=People,dc=examples,dc=com
 uniqueMember: cn=bjones,ou=People,dc=examples,dc=com
