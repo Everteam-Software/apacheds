@@ -47,5 +47,5 @@ objectClass: groupOfUniqueNames
 objectClass: top
 cn: WorkflowAdministrator
 ou: Roles
-uniqueMember: cn=admin,ou=People,dc=intalio,dc=co
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 
