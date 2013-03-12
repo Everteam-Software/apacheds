@@ -17,3 +17,4 @@ define "apacheds-webapp" do
   test.with(libs, LOG4J)
   package(:war).with :libs => libs
 end
+
