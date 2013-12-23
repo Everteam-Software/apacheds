@@ -22,6 +22,18 @@ ou: People
 sn: Administrator
 userPassword:: Y2hhbmdlaXQ=
 
+dn: cn=bob,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: bob
+givenName: Bob
+mail: bob@intalio.org
+ou: People
+sn: Leonardo
+userPassword:: Y2hhbmdlaXQ=
+
 dn: ou=Roles,dc=intalio,dc=com
 objectClass: organizationalUnit
 objectClass: top
@@ -34,6 +46,7 @@ objectClass: top
 cn: ProcessManager
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
 dn: cn=ProcessAdministrator,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
@@ -41,6 +54,7 @@ objectClass: top
 cn: ProcessAdministrator
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
 dn: cn=WorkflowAdministrator,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
@@ -48,4 +62,5 @@ objectClass: top
 cn: WorkflowAdministrator
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
