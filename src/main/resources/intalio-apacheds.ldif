@@ -64,3 +64,16 @@ ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
+dn: cn=CollabAdministrator,ou=Roles,dc=intalio,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: CollabAdministrator
+ou: Roles
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+
+dn: cn=CollabDeveloper,ou=Roles,dc=intalio,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: CollabDeveloper
+ou: Roles
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
