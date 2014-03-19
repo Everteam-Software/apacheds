@@ -69,15 +69,10 @@ public class StartStopListener implements ServletContextListener {
 			
 			directoryService.setAllowAnonymousAccess(allowAnonymousAccess);
 			
-			directoryService.startup();
-
 			socketAcceptor = new SocketAcceptor(null);
 			ldapService = new LdapService();
 			ldapService.setSocketAcceptor(socketAcceptor);
 			ldapService.setDirectoryService(directoryService);
-
-			PartitionHandler ph = new PartitionHandler(directoryService);
-			ph.init(PARTITIONS_JSON);
 
 			// Set LDAP port to 10389
 			int port = 10389;
@@ -95,6 +90,8 @@ public class StartStopListener implements ServletContextListener {
 			logger.debug("Apache DS starting with : " + directoryService);
 			
 			directoryService.startup();
+			PartitionHandler ph = new PartitionHandler(directoryService);
+			ph.init(PARTITIONS_JSON);
 			ldapService.start();
 			logger.debug("Is Apache DS started ? " + directoryService.isStarted());
 			
