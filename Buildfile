@@ -2,7 +2,7 @@ require "buildr"
 require "install.rb"
 
 # Keep this structure to allow the build system to update version numbers.
-VERSION_NUMBER = "6.0.0.42"
+VERSION_NUMBER = "6.0.0.43-SNAPSHOT"
 
 desc "Embedded Apache Directory Service"
 define "apacheds-webapp" do
