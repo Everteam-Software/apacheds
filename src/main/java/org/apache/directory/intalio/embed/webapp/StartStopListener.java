@@ -83,8 +83,11 @@ public class StartStopListener implements ServletContextListener {
 
 			// Determine an appropriate working directory
 			ServletContext servletContext = evt.getServletContext();
-			File workingDir = (File) servletContext
-					.getAttribute("javax.servlet.context.tempdir");
+			String workingDirPath = evt.getServletContext()
+                    .getInitParameter("ldap.workingDir");
+			File workingDir = new File(workingDirPath);
+			if(!workingDir.exists())
+			    workingDir.mkdirs();
 			directoryService.setWorkingDirectory(workingDir);
 			
 			logger.debug("Apache DS starting with : " + directoryService);

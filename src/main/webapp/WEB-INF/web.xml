@@ -18,6 +18,11 @@
       <param-value>10389</param-value>
     </context-param>
 
+<context-param>
+      <param-name>ldap.workingDir</param-name>
+      <param-value>apacheds-work</param-value>
+    </context-param>
+
 	<listener>
 		<listener-class>
 			org.apache.directory.intalio.embed.webapp.StartStopListener
