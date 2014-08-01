@@ -9,10 +9,11 @@ objectClass: groupOfUniqueNames
 objectClass: top
 cn: employee
 ou: Roles
+uniqueMember: cn=roger,ou=People,dc=examples,dc=com
 uniqueMember: cn=msmith,ou=People,dc=examples,dc=com
-uniqueMember: cn=jlee,ou=People,dc=examples,dc=com
-uniqueMember: cn=ewilliams,ou=People,dc=examples,dc=com
-uniqueMember: cn=bjones,ou=People,dc=examples,dc=com
+uniqueMember: cn=ellen,ou=People,dc=examples,dc=com
+uniqueMember: cn=philip,ou=People,dc=intalio,dc=com
+uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
 dn: cn=manager,ou=Roles,dc=examples,dc=com
 objectClass: groupOfUniqueNames
@@ -20,11 +21,7 @@ objectClass: top
 cn: manager
 ou: Roles
 uniquemember: cn=ewilliams,ou=People,dc=examples,dc=com
-
-dn: cn=executive,ou=Roles,dc=examples,dc=com
-objectClass: groupOfUniqueNames
-objectClass: top
-cn: executive
-ou: Roles
-uniquemember: cn=bjones,ou=People,dc=examples,dc=com
-
+uniquemember: cn=daniel,ou=People,dc=examples,dc=com
+uniquemember: cn=bob,ou=People,dc=intalio,dc=com
+uniquemember: cn=henry,ou=People,dc=intalio,dc=com
+uniquemember: cn=admin,ou=People,dc=intalio,dc=com

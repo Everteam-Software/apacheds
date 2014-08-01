@@ -16,11 +16,76 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: top
 cn: admin
+displayname: Administrator
 givenName: ADMIN
 mail: admin@intalio.org
 ou: People
 sn: Administrator
 userPassword:: Y2hhbmdlaXQ=
+
+dn: cn=eng1,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: eng1
+givenName: eng1
+mail: eng1@intalio.org
+ou: People
+sn: ENG1
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=henry,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: henry
+givenName: Henry
+mail: henry@intalio.org
+manager: cn=bob,ou=People,dc=intalio,dc=com
+ou: People
+sn: Williams
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=james,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: james
+givenName: James
+mail: james@intalio.org
+manager: cn=admin,ou=People,dc=intalio,dc=com
+ou: People
+sn: Hunt
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=john,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: john
+givenName: John
+mail: john@intalio.org
+manager: cn=admin,ou=People,dc=intalio,dc=com
+ou: People
+sn: Parker
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=jones,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: jones
+givenName: Jones
+mail: jones@intalio.org
+manager: cn=admin,ou=People,dc=intalio,dc=com
+ou: People
+sn: Jackson
+userPassword:: cGFzc3dvcmQ=
 
 dn: cn=bob,ou=People,dc=intalio,dc=com
 objectClass: person
@@ -32,7 +97,33 @@ givenName: Bob
 mail: bob@intalio.org
 ou: People
 sn: Leonardo
-userPassword:: Y2hhbmdlaXQ=
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=mark,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: mark
+givenName: Mark
+mail: mark@intalio.org
+manager: cn=msmith,ou=People,dc=examples,dc=com
+ou: People
+sn: Msmith
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=philip,ou=People,dc=intalio,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: top
+cn: philip
+givenName: Philip
+mail: philip@intalio.org
+manager: cn=bob,ou=People,dc=intalio,dc=com
+ou: People
+sn: Miller
+userPassword:: cGFzc3dvcmQ=
 
 dn: ou=Roles,dc=intalio,dc=com
 objectClass: organizationalUnit
@@ -54,7 +145,6 @@ objectClass: top
 cn: ProcessAdministrator
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
-uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
 dn: cn=WorkflowAdministrator,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
@@ -62,7 +152,6 @@ objectClass: top
 cn: WorkflowAdministrator
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
-uniqueMember: cn=bob,ou=People,dc=intalio,dc=com
 
 dn: cn=CollabAdministrator,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
@@ -76,4 +165,16 @@ objectClass: groupOfUniqueNames
 objectClass: top
 cn: CollabDeveloper
 ou: Roles
-uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+uniqueMember: cn=james,ou=People,dc=intalio,dc=com
+uniqueMember: cn=jones,ou=People,dc=intalio,dc=com
+uniqueMember: cn=david,ou=People,dc=examples,dc=com
+
+dn: cn=eng,ou=Roles,dc=intalio,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: eng
+ou: Roles
+uniqueMember: cn=eng1,ou=People,dc=intalio,dc=com
+uniqueMember: cn=john,ou=People,dc=intalio,dc=com
+uniqueMember: cn=mark,ou=People,dc=intalio,dc=com
+uniqueMember: cn=nancy,ou=People,dc=examples,dc=com

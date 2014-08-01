@@ -15,7 +15,6 @@ displayname: Mark Smith
 givenname: Mark
 l: Foster City
 mail: msmith@intalio.org
-manager: cn=ewilliams,ou=People,dc=examples,dc=com
 ou: People
 roomNumber: 2248-B12
 sn: Smith
@@ -35,7 +34,6 @@ displayName: Emily Williams
 givenname: Emily
 l: Foster City
 mail: ewilliams@intalio.org
-manager: cn=bsmith,ou=People,dc=examples,dc=com
 ou: People
 roomNumber: 6548
 sn: Williams
@@ -44,41 +42,98 @@ title: Manager of Clerks
 uid: examples\ewilliams
 userPassword:: cGFzc3dvcmQ=
 
-dn: cn=jlee,ou=People,dc=examples,dc=com
+dn: cn=nancy,ou=People,dc=examples,dc=com
 objectClass: organizationalPerson
 objectClass: person
 objectClass: inetOrgPerson
 objectClass: top
-cn: jlee
+cn: nancy
 departmentnumber: 2
-displayname: Jane Lee
-givenname: Jane
+displayname: Nancy Wilson
+givenname: Nancy
 l: Foster City
-mail: jlee@intalio.org
+mail: nancy@intalio.org
+manager: cn=admin,ou=People,dc=intalio,dc=com
+ou: People
+sn: Wilson
+title: Clerk 1
+uid: examples\nancy
+userpassword:: cGFzc3dvcmQ=
+
+dn: cn=roger,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: roger
+departmentnumber: 102
+displayname: Roger Baker
+givenname: Roger
+l: Foster City
+mail: roger@intalio.org
 manager: cn=ewilliams,ou=People,dc=examples,dc=com
 ou: People
-sn: Lee
-title: Clerk 1
-uid: examples\jlee
+roomnumber: 6733
+sn: Baker
+telephonenumber: (650) 555-9987
+title: Director of Customer Service
+uid: examples\roger
 userpassword:: cGFzc3dvcmQ=
 
-dn: cn=bjones,ou=People,dc=examples,dc=com
+dn: cn=daniel,ou=People,dc=examples,dc=com
 objectClass: organizationalPerson
 objectClass: person
 objectClass: inetOrgPerson
 objectClass: top
-cn: bjones
-departmentnumber: 102
-displayname: Bob Jones
-givenname: Robert
+cn: daniel
+departmentNumber: 101
+displayName: Daniel Clark
+givenname: Daniel
 l: Foster City
-mail: bjones@intalio.org
-manager: cn=bjones,ou=People,dc=examples,dc=com
+mail: daniel@intalio.org
+manager: cn=ewilliams,ou=People,dc=examples,dc=com
 ou: People
-roomnumber: 6733
-sn: Jones
-telephonenumber: (650) 555-9987
-title: Director of Customer Service
-uid: examples\bjones
+roomNumber: 6548
+sn: Clark
+telephoneNumber: (650) 123-5432
+title: Manager of Clerks
+uid: examples\daniel
+userPassword:: cGFzc3dvcmQ=
+
+dn: cn=david,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: david
+departmentnumber: 2
+displayname: David Cooper
+givenname: David
+l: Foster City
+mail: david@intalio.org
+manager: cn=msmith,ou=People,dc=examples,dc=com
+ou: People
+sn: Cooper
+title: Clerk 1
+uid: examples\david
 userpassword:: cGFzc3dvcmQ=
 
+dn: cn=ellen,ou=People,dc=examples,dc=com
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: ellen
+departmentnumber: 102
+displayname: Ellen Scott
+givenname: Ellen
+l: Foster City
+mail: ellen@intalio.org
+manager: cn=ewilliams,ou=People,dc=examples,dc=com
+ou: People
+roomnumber: 6733
+sn: Scott
+telephonenumber: (650) 555-9987
+title: Director of Customer Service
+uid: examples\ellen
+userpassword:: cGFzc3dvcmQ=
