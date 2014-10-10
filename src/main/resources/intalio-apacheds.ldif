@@ -170,6 +170,13 @@ uniqueMember: cn=james,ou=People,dc=intalio,dc=com
 uniqueMember: cn=jones,ou=People,dc=intalio,dc=com
 uniqueMember: cn=david,ou=People,dc=examples,dc=com
 
+dn: cn=ReportAdministrator,ou=Roles,dc=intalio,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: ReportAdministrator
+ou: Roles
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+
 dn: cn=eng,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
 objectClass: top
