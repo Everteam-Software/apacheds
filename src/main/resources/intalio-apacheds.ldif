@@ -177,6 +177,13 @@ cn: ReportAdministrator
 ou: Roles
 uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
 
+dn: cn=BREAdministrator,ou=Roles,dc=intalio,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: BREAdministrator
+ou: Roles
+uniqueMember: cn=admin,ou=People,dc=intalio,dc=com
+
 dn: cn=eng,ou=Roles,dc=intalio,dc=com
 objectClass: groupOfUniqueNames
 objectClass: top
