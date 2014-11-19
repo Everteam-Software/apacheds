@@ -25,6 +25,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.directory.server.core.DefaultDirectoryService;
 import org.apache.directory.server.core.DirectoryService;
 import org.apache.directory.server.ldap.LdapService;
@@ -40,82 +41,92 @@ import org.slf4j.LoggerFactory;
  */
 public class StartStopListener implements ServletContextListener {
 
-	public static final String PARTITIONS_JSON = "/partitions.json";
-	Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	private DirectoryService directoryService;
+    public static final String PARTITIONS_JSON = "/partitions.json";
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private SocketAcceptor socketAcceptor;
-	private LdapService ldapService;
+    private DirectoryService directoryService;
 
-	static {
-		System.out.println("static initialiser called");
-	}
+    private SocketAcceptor socketAcceptor;
+    private LdapService ldapService;
 
-	/**
-	 * Startup ApacheDS embedded.
-	 */
-	public void contextInitialized(ServletContextEvent evt) {
-		logger.info("### Starting ApacheDS ###");
-		try {
-			directoryService = new DefaultDirectoryService();
-			directoryService.setShutdownHookEnabled(true);
-			directoryService.getChangeLog().setEnabled(false);
-			// Added by Veresh
-			String _allowAnonymousAccess = evt.getServletContext()
-					.getInitParameter("ldap.allowanonymousaccess");
-			boolean allowAnonymousAccess = Boolean
-					.parseBoolean(_allowAnonymousAccess);
-			
-			directoryService.setAllowAnonymousAccess(allowAnonymousAccess);
-			
-			socketAcceptor = new SocketAcceptor(null);
-			ldapService = new LdapService();
-			ldapService.setSocketAcceptor(socketAcceptor);
-			ldapService.setDirectoryService(directoryService);
+    static {
+        System.out.println("static initialiser called");
+    }
 
-			// Set LDAP port to 10389
-			int port = 10389;
-			String value = evt.getServletContext()
-					.getInitParameter("ldap.port");
-			port = Integer.parseInt(value);
-			ldapService.setIpPort(port);
+    /**
+     * Startup ApacheDS embedded.
+     */
+    public void contextInitialized(ServletContextEvent evt) {
+        logger.info("### Starting ApacheDS ###");
+        try {
+            directoryService = new DefaultDirectoryService();
+            directoryService.setShutdownHookEnabled(true);
+            directoryService.getChangeLog().setEnabled(false);
+            // Added by Veresh
+            String _allowAnonymousAccess = evt.getServletContext()
+                    .getInitParameter("ldap.allowanonymousaccess");
+            boolean allowAnonymousAccess = Boolean
+                    .parseBoolean(_allowAnonymousAccess);
 
-			// Determine an appropriate working directory
-			ServletContext servletContext = evt.getServletContext();
-			String workingDirPath = evt.getServletContext()
-                    .getInitParameter("ldap.workingDir");
-			File workingDir = new File(workingDirPath);
-			if(!workingDir.exists())
-			    workingDir.mkdirs();
-			directoryService.setWorkingDirectory(workingDir);
-			
-			logger.debug("Apache DS starting with : " + directoryService);
-			
-			directoryService.startup();
-			PartitionHandler ph = new PartitionHandler(directoryService);
-			ph.init(PARTITIONS_JSON);
-			ldapService.start();
-			logger.debug("Is Apache DS started ? " + directoryService.isStarted());
-			
-			// Store directoryService in context to provide it to servlets etc.
-			servletContext.setAttribute(DirectoryService.JNDI_KEY,
-					directoryService);
+            directoryService.setAllowAnonymousAccess(allowAnonymousAccess);
 
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+            socketAcceptor = new SocketAcceptor(null);
+            ldapService = new LdapService();
+            ldapService.setSocketAcceptor(socketAcceptor);
+            ldapService.setDirectoryService(directoryService);
 
-	/**
-	 * Shutdown ApacheDS embedded.
-	 */
-	public void contextDestroyed(ServletContextEvent evt) {
-		try {
-			ldapService.stop();
-			directoryService.shutdown();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+            // Set LDAP port to 10389
+            int port = 10389;
+            String value = evt.getServletContext()
+                    .getInitParameter("ldap.port");
+            port = Integer.parseInt(value);
+            ldapService.setIpPort(port);
+
+            // Determine an appropriate working directory
+            ServletContext servletContext = evt.getServletContext();
+            
+            File workingDir = new File(getWorkingDirPath(evt));
+            if (!workingDir.exists())
+                workingDir.mkdirs();
+            directoryService.setWorkingDirectory(workingDir);
+
+            logger.debug("Apache DS starting with : " + directoryService);
+
+            directoryService.startup();
+            PartitionHandler ph = new PartitionHandler(directoryService);
+            ph.init(PARTITIONS_JSON);
+            ldapService.start();
+            logger.debug("Is Apache DS started ? "
+                    + directoryService.isStarted());
+
+            // Store directoryService in context to provide it to servlets etc.
+            servletContext.setAttribute(DirectoryService.JNDI_KEY,
+                    directoryService);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String getWorkingDirPath(ServletContextEvent evt) {
+        String path = evt.getServletContext().getInitParameter(
+                "ldap.workingDir");
+        if(StringUtils.isEmpty(path)) {
+            path =  System.getProperty("org.intalio.tempo.configDirectory");
+            path += "/../apacheds-work";
+        }
+        return path;
+    }
+    /**
+     * Shutdown ApacheDS embedded.
+     */
+    public void contextDestroyed(ServletContextEvent evt) {
+        try {
+            ldapService.stop();
+            directoryService.shutdown();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
