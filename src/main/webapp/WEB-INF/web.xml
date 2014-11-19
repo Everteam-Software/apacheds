@@ -20,7 +20,7 @@
 
 <context-param>
       <param-name>ldap.workingDir</param-name>
-      <param-value>{org.intalio.tempo.configDirectory}/../apacheds-work</param-value>
+      <param-value>${org.intalio.tempo.configDirectory}/../apacheds-work</param-value>
     </context-param>
 
 	<listener>
