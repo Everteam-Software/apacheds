@@ -23,48 +23,54 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ImportLDIF implements ServletContextListener {
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public void contextDestroyed(ServletContextEvent event) {
+    public void contextDestroyed(ServletContextEvent event) {
 
-	}
+    }
 
-	public void contextInitialized(ServletContextEvent event) {
-		try {
-			ServletContext servletContext = event.getServletContext();
-			Hashtable<Object, Object> createEnv = EnvHelper.createEnv(servletContext);
+    public void contextInitialized(ServletContextEvent event) {
+        try {
+            ServletContext servletContext = event.getServletContext();
+            Hashtable<Object, Object> createEnv = EnvHelper
+                    .createEnv(servletContext);
 
-			File f = new File(this.getClass().getResource(StartStopListener.PARTITIONS_JSON).getFile()).getParentFile();
-			File[] ldifs = f.listFiles(new FilenameFilter() {
-				public boolean accept(File dir, String name) {
-					return name.endsWith(".ldif") ? true : false;
-				}
-			});
+            File f = new File(this.getClass()
+                    .getResource(StartStopListener.PARTITIONS_JSON).getFile())
+                    .getParentFile();
+            File[] ldifs = f.listFiles(new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".ldif") ? true : false;
+                }
+            });
 
-			logger.info("LDIFs files to process:"+ldifs.length);
-			for (File toimport : ldifs) {
-				BufferedReader in = new BufferedReader(new FileReader(toimport));
-				Iterator<LdifEntry> iterator = new LdifReader(in).iterator();
-				while (iterator.hasNext()) {
-					LdifEntry entry = iterator.next();
-					Entry en = entry.getEntry();
-					LdapDN dn = new LdapDN(entry.getDn());
-					LdapContext rootDSE = new InitialLdapContext(createEnv,null);
-					try {
-						rootDSE.createSubcontext(dn, AttributeUtils.toAttributes(en));	
-					} catch (LdapNameAlreadyBoundException lna) {
-						logger.debug("Entry exist:"+lna.getMessage());
-					}
+            logger.info("LDIFs files to process:" + ldifs.length);
+            for (File toimport : ldifs) {
+                BufferedReader in = new BufferedReader(new FileReader(toimport));
+                Iterator<LdifEntry> iterator = new LdifReader(in).iterator();
+                while (iterator.hasNext()) {
+                    LdifEntry entry = iterator.next();
+                    Entry en = entry.getEntry();
+                    LdapDN dn = new LdapDN(entry.getDn());
+                    LdapContext rootDSE = new InitialLdapContext(createEnv,
+                            null);
+                    try {
+                        rootDSE.createSubcontext(dn,
+                                AttributeUtils.toAttributes(en));
+                    } catch (LdapNameAlreadyBoundException lna) {
+                        logger.debug("Entry exist:" + lna.getMessage());
+                    }
 
-				}
-				in.close();
-				boolean renamed = toimport.renameTo(new File(toimport.getAbsolutePath()+ ".imported"));
-				logger.info("Processed and renamed:"+renamed);
-			}
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
+                }
+                in.close();
+                boolean renamed = toimport.renameTo(new File(toimport
+                        .getAbsolutePath() + ".imported"));
+                logger.info("Processed and renamed:" + renamed);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
 
-	}
+    }
 
 }

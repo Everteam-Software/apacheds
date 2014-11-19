@@ -20,7 +20,7 @@
 
 <context-param>
       <param-name>ldap.workingDir</param-name>
-      <param-value>apacheds-work</param-value>
+      <param-value>${INTALIO_CONF}/../apacheds-work</param-value>
     </context-param>
 
 	<listener>
