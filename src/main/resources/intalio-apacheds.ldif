@@ -16,8 +16,8 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: top
 cn: admin
-displayname: Joe Administrator
-givenName: Joe
+displayname: System Administrator
+givenName: System
 mail: admin@intalio.org
 ou: People
 sn: Administrator
