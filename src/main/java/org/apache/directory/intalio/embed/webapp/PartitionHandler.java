@@ -2,6 +2,7 @@ package org.apache.directory.intalio.embed.webapp;
 
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,9 +30,10 @@ public class PartitionHandler {
 
 	@SuppressWarnings("unchecked")
 	public void init(String name) throws Exception {
-
-		FileReader r = new FileReader(new File(this.getClass()
-				.getResource(name).getFile()));
+	    URL pathname = this.getClass()
+	                .getResource(name);
+	    File file = new File(pathname.toURI());
+		FileReader r = new FileReader(file);
 		JSONParser parser = new JSONParser(r);
 		HashMap top = (HashMap) ObjectBuilder.getVal(parser);
 		HashMap partitions = (HashMap) top.get("partitions");

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -35,9 +36,10 @@ public class ImportLDIF implements ServletContextListener {
             Hashtable<Object, Object> createEnv = EnvHelper
                     .createEnv(servletContext);
 
-            File f = new File(this.getClass()
-                    .getResource(StartStopListener.PARTITIONS_JSON).getFile())
-                    .getParentFile();
+            URL pathname = this.getClass()
+                    .getResource(StartStopListener.PARTITIONS_JSON);
+            File file = new File(pathname.toURI());
+            File f = file.getParentFile();
             File[] ldifs = f.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name) {
                     return name.endsWith(".ldif") ? true : false;
