@@ -38,7 +38,7 @@ public class ImportLDIF implements ServletContextListener {
 
             URL pathname = this.getClass()
                     .getResource(StartStopListener.PARTITIONS_JSON);
-            File file = new File(pathname.toURI());
+            File file = new File(pathname.toURI().getPath());
             File f = file.getParentFile();
             File[] ldifs = f.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name) {
