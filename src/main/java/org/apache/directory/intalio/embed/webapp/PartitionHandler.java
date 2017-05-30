@@ -32,7 +32,7 @@ public class PartitionHandler {
 	public void init(String name) throws Exception {
 	    URL pathname = this.getClass()
 	                .getResource(name);
-	    File file = new File(pathname.toURI());
+	    File file = new File(pathname.toURI().getPath());
 		FileReader r = new FileReader(file);
 		JSONParser parser = new JSONParser(r);
 		HashMap top = (HashMap) ObjectBuilder.getVal(parser);
